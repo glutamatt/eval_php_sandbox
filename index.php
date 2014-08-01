@@ -1,7 +1,8 @@
-<?php 
-$_SERVER[REMOTE_ADDR] === '127.0.0.1' || exit(0);
-if($code = $_POST['code']) { 
-	error_reporting  (E_ALL);
+<?php
+$_SERVER['REMOTE_ADDR'] === '127.0.0.1' || exit(0);
+if(isset($_POST['code'])) {
+    $code = $_POST['code'];
+	error_reporting(E_ALL);
 	ini_set ('display_errors', true);
 	eval($code); exit();
 } ?><!DOCTYPE html>
@@ -57,36 +58,44 @@ if($code = $_POST['code']) {
 					.post('', {code:code}, function(r){$('#result').html(r)})
 					.fail(function() { $('#result').html('Erreur serveur')})
                 	.complete(function(){$loader.hide()});
+                Historik.show();
 			}
 		});
 
 		$('#historik-btn').on('click', function(){
-			$list = $('#historik-list');
-			$list.empty();
-			var hist = Historik.get();
-			var load = function(i){return function(){
-				editor.setValue(hist[i].code);
-				$list.empty();
-			}};
-			$(Historik.get()).each(function(i, vers){
-				var d = new Date(vers.time*1000)
-				var ds = d.getMonth()+'/'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()
-				var $versBtn = $('<li>')
-					.append($('<pre>').text(vers.code).addClass('small'))
-					.prepend($('<a class="btn btn-info">')
-						.text(ds)
-						.click(load(i))
-					)
-				$list.append($versBtn)
-			});
+			Historik.show();
 		});
 	});
 
 	var Historik = function(){
 		var stack = JSON.parse(window.localStorage.getItem("Historik")) || [];
 		var maxHistorikLength = 100;
-		var newVerMinTimeSec = 20;
+		var newVerMinTimeSec = 20*1000; // milliseconds
 		var hasPushed = false;
+
+        var _show = function() {
+            $list = $('#historik-list');
+            $list.empty();
+            var hist = Historik.get();
+            var load = function(i){return function(){
+                editor.setValue(hist[i].code);
+                $list.empty();
+            }};
+            var addInitialZero = function(n) {
+                return ('0'+n).slice(-2);
+            };
+            $(Historik.get()).each(function(i, vers){
+                var d = new Date(vers.time);
+                var ds = addInitialZero(d.getMonth()+1)+'/'+addInitialZero(d.getDate())+' '+addInitialZero(d.getHours())+':'+addInitialZero(d.getMinutes());
+                var $versBtn = $('<li>')
+                    .append($('<pre>').text(vers.code).addClass('small'))
+                    .prepend($('<a class="btn btn-info">')
+                        .text(ds)
+                        .click(load(i))
+                    )
+                $list.append($versBtn)
+            });
+        };
 
 		var _persist = function() {
 			window.localStorage.setItem("Historik", JSON.stringify(stack));
@@ -99,7 +108,7 @@ if($code = $_POST['code']) {
 
 		var _pushStack = function(code) {
 			var last = stack[0];
-			var now = new Date()/1000;
+			var now = (new Date()).getTime();
 			
 			if (last && code == last.code)
 				return;
@@ -114,7 +123,8 @@ if($code = $_POST['code']) {
 
 		return {
 			push: _pushStack,
-			get: function() { return stack } 
+			get: function() { return stack },
+            show: _show
 		};
 	}();
 	</script>
