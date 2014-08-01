@@ -58,13 +58,12 @@ if(isset($_POST['code'])) {
 					.post('', {code:code}, function(r){$('#result').html(r)})
 					.fail(function() { $('#result').html('Erreur serveur')})
                 	.complete(function(){$loader.hide()});
-                Historik.show();
 			}
 		});
 
-		$('#historik-btn').on('click', function(){
-			Historik.show();
-		});
+		$('#historik-btn').on('click', function(){Historik.show(function(code){
+			editor.setValue(code);
+		})});
 	});
 
 	var Historik = function(){
@@ -73,20 +72,20 @@ if(isset($_POST['code'])) {
 		var newVerMinTimeSec = 20*1000; // milliseconds
 		var hasPushed = false;
 
-        var _show = function() {
+        var _show = function(onLoadHistory) {
             $list = $('#historik-list');
             $list.empty();
             var hist = Historik.get();
+            
             var load = function(i){return function(){
-                editor.setValue(hist[i].code);
+                onLoadHistory(hist[i].code);
                 $list.empty();
             }};
-            var addInitialZero = function(n) {
-                return ('0'+n).slice(-2);
-            };
+            var pad0 = function(n) {return ('0'+n).slice(-2)};
+
             $(Historik.get()).each(function(i, vers){
                 var d = new Date(vers.time);
-                var ds = addInitialZero(d.getMonth()+1)+'/'+addInitialZero(d.getDate())+' '+addInitialZero(d.getHours())+':'+addInitialZero(d.getMinutes());
+                var ds = pad0(d.getMonth()+1)+'/'+pad0(d.getDate())+' '+pad0(d.getHours())+':'+pad0(d.getMinutes());
                 var $versBtn = $('<li>')
                     .append($('<pre>').text(vers.code).addClass('small'))
                     .prepend($('<a class="btn btn-info">')
