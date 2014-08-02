@@ -53,6 +53,7 @@ if(isset($_POST['code'])) {
                 var code = editor.getValue();
                 if(!code) return;
                 $loader.show();
+                Historik.close();
                 Historik.push(code);
 				$
 					.post('', {code:code}, function(r){$('#result').html(r)})
@@ -71,30 +72,30 @@ if(isset($_POST['code'])) {
 		var maxHistorikLength = 100;
 		var newVerMinTimeSec = 20*1000; // milliseconds
 		var hasPushed = false;
+		var $_uiList = $('#historik-list');
 
         var _show = function(onLoadHistory) {
-            $list = $('#historik-list');
-            $list.empty();
-            var hist = Historik.get();
-            
-            var load = function(i){return function(){
-                onLoadHistory(hist[i].code);
-                $list.empty();
+            _close();
+            var onClick = function(i){return function(){
+                onLoadHistory(stack[i].code);
+                _close();
             }};
             var pad0 = function(n) {return ('0'+n).slice(-2)};
 
-            $(Historik.get()).each(function(i, vers){
+            $(stack).each(function(i, vers){
                 var d = new Date(vers.time);
                 var ds = pad0(d.getMonth()+1)+'/'+pad0(d.getDate())+' '+pad0(d.getHours())+':'+pad0(d.getMinutes());
                 var $versBtn = $('<li>')
                     .append($('<pre>').text(vers.code).addClass('small'))
                     .prepend($('<a class="btn btn-info">')
                         .text(ds)
-                        .click(load(i))
+                        .click(onClick(i))
                     )
-                $list.append($versBtn)
+                $_uiList.append($versBtn)
             });
         };
+
+        var _close = function() {$_uiList.empty()};
 
 		var _persist = function() {
 			window.localStorage.setItem("Historik", JSON.stringify(stack));
@@ -122,8 +123,8 @@ if(isset($_POST['code'])) {
 
 		return {
 			push: _pushStack,
-			get: function() { return stack },
-            show: _show
+            show: _show,
+            close: _close
 		};
 	}();
 	</script>
