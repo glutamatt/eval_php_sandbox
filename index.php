@@ -48,7 +48,7 @@ if(isset($_POST['code'])) {
 		
 		editor.commands.addCommand({
 		    name: 'getResult',
-		    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+		    bindKey: {win: 'Ctrl-Enter',  mac: 'Command-Enter'},
 		    exec: function(editor) {
                 var code = editor.getValue();
                 if(!code) return;
