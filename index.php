@@ -69,8 +69,8 @@ if(isset($_POST['code'])) {
 
 	var Historik = function(){
 		var stack = JSON.parse(window.localStorage.getItem("Historik")) || [];
-		var maxHistorikLength = 100;
-		var newVerMinTimeSec = 20*1000; // milliseconds
+		var maxHistorikLength = 300;
+		var newVerMinTimeSec = 60*1000; // milliseconds
 		var hasPushed = false;
 		var $_uiList = $('#historik-list');
 
