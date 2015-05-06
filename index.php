@@ -36,13 +36,16 @@ if(isset($_POST['code'])) {
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ext-language_tools.js"></script>
 	<script>
 	$(function(){
 
-	    var editor = ace.edit("editor");
+        ace.require("ace/ext/language_tools");
+        var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
-		editor.getSession().setMode("ace/mode/javascript");
-	    editor.focus();
+        editor.getSession().setMode("ace/mode/javascript");
+        editor.setOptions({enableBasicAutocompletion: true, enableLiveAutocompletion: true});
+        editor.focus();
 
         var $loader = $('#loader');
 		
