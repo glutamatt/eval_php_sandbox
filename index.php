@@ -43,7 +43,7 @@ if(isset($_POST['code'])) {
         ace.require("ace/ext/language_tools");
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
-        editor.getSession().setMode("ace/mode/javascript");
+        editor.getSession().setMode({ path : "ace/mode/php", inline:true });
         editor.setOptions({enableBasicAutocompletion: true, enableLiveAutocompletion: true});
         editor.focus();
 
