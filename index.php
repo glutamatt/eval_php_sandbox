@@ -34,7 +34,7 @@ if(isset($_POST['code'])) {
 	
     <div id="loader"><img src="//cdnjs.cloudflare.com/ajax/libs/file-uploader/3.7.0/processing.gif"></div>
 
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ext-language_tools.js"></script>
 	<script>
