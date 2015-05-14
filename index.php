@@ -66,7 +66,7 @@ if(isset($_POST['code'])) {
 		});
 
 		$('#historik-btn').on('click', function(){Historik.show(function(code){
-			editor.setValue(code);
+			editor.setValue(code);editor.focus();$(window).scrollTop(0);
 		})});
 	});
 
