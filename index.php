@@ -87,12 +87,12 @@ if(isset($_POST['code'])) {
 
             $(stack).each(function(i, vers){
                 var d = new Date(vers.time);
-                var ds = pad0(d.getMonth()+1)+'/'+pad0(d.getDate())+' '+pad0(d.getHours())+':'+pad0(d.getMinutes());
+                var ds = d.toLocaleDateString('fr-FR', {weekday: "long", year: "numeric", month: "long", day: "numeric"})
+                    + ' ' + d.toLocaleTimeString('fr-FR');
                 var $versBtn = $('<li>')
                     .append($('<pre>').text(vers.code).addClass('small'))
                     .prepend($('<a class="btn btn-info">')
-                        .text(ds)
-                        .click(onClick(i))
+                        .text(ds).click(onClick(i))
                     )
                 $_uiList.append($versBtn)
             });
