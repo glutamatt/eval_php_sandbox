@@ -12,20 +12,22 @@ if(isset($_POST['code'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <style type="text/css" media="screen">
-	    #editor { height: 800px; font-size: 1.1em;}
+        body, pre { font-family: monospace; font-size: 1.2em; color: rgba(51, 51, 51, 0.9);}
+	    #editor { height: 800px; font: inherit; font-size: 1.2em;}
         #loader { z-index: 9999999; position: absolute; right: 0; top: 0; display: none; }
+        #result { background-color: transparent ; border: none; border-radius: none; }
 	</style>
   </head>
   <body>
 
-    <div class="container-fluid">
+    <div>
 		<div class="row">
 		  <div class="col-md-6"><div id="editor"></div></div>
 		  <div class="col-md-6"><pre id="result"></pre></div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button id="historik-btn" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-time"></span></button>
+				<button id="historik-btn" class="btn btn-link"><span class="glyphicon glyphicon-time"></span></button>
 				<ul id="historik-list" class="list-unstyled"></ul>
 			</div>
 		</div>
@@ -90,8 +92,8 @@ if(isset($_POST['code'])) {
                 var ds = d.toLocaleDateString('fr-FR', {weekday: "long", year: "numeric", month: "long", day: "numeric"})
                     + ' ' + d.toLocaleTimeString('fr-FR');
                 var $versBtn = $('<li>')
-                    .append($('<pre>').text(vers.code).addClass('small'))
-                    .prepend($('<a class="btn btn-info">')
+                    .append($('<pre>').text(vers.code))
+                    .prepend($('<a class="btn btn-link btn-info">')
                         .text(ds).click(onClick(i))
                     )
                 $_uiList.append($versBtn)
