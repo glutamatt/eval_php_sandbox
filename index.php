@@ -13,9 +13,11 @@ if(isset($_POST['code'])) {
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <style type="text/css" media="screen">
         body, pre { font-family: monospace; font-size: 1.2em; color: rgba(51, 51, 51, 0.9);}
-	    #editor { height: 800px; font: inherit; font-size: 1.2em;}
+        pre { margin: 5px; }
+        #editor { height: 800px; font: inherit; font-size: 1.2em;box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.50);}
         #loader { z-index: 9999999; position: absolute; right: 0; top: 0; display: none; }
         #result { background-color: transparent ; border: none; border-radius: none; }
+        #historik-btn { width: 30px;height: 30px;padding: 6px 0;border-radius: 15px;margin: 10px;}
 	</style>
   </head>
   <body>
@@ -27,7 +29,7 @@ if(isset($_POST['code'])) {
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button id="historik-btn" class="btn btn-link"><span class="glyphicon glyphicon-time"></span></button>
+				<button id="historik-btn"><span class="glyphicon glyphicon-time"></span></button>
 				<ul id="historik-list" class="list-unstyled"></ul>
 			</div>
 		</div>
