@@ -15,7 +15,7 @@ if(isset($_POST['code'])) {
         body, pre { font-family: monospace; font-size: 1.2em; color: rgba(51, 51, 51, 0.9);}
         .nopadding {padding: 0;}
         #editor { height: 800px; font: inherit; font-size: 1.2em;box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.50);}
-        #loader { z-index: 9999999; position: absolute; right: 50px; top: 0; display: none; zoom: 1.7;}
+        #loader { z-index: 9999999; position: absolute; right: 30px; top: 30px; width: 100px; height: 100px; display: none;box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.50); border-radius: 100px; background-color: white;}
         #result { background-color: transparent ; border: none; border-radius: none; }
         #historik-btn { width: 30px;height: 30px;padding: 6px 0;border-radius: 15px;margin: 10px;}
 
@@ -51,7 +51,7 @@ if(isset($_POST['code'])) {
 
 	
     <div id="loader"><svg class="circular">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
     </svg></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
