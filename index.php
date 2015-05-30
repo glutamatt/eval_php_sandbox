@@ -1,5 +1,5 @@
 <?php
-$_SERVER['REMOTE_ADDR'] === '127.0.0.1' || exit(0);
+$_SERVER['REMOTE_ADDR'] === '127.0.0.1' || die('Seriously dude ?');
 if(isset($_POST['code'])) {
     $code = $_POST['code'];
 	error_reporting(E_ALL);
