@@ -64,7 +64,7 @@ if(isset($_POST['code'])) {
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/ambiance");
         editor.getSession().setMode({ path : "ace/mode/php", inline:true });
-        editor.setOptions({enableBasicAutocompletion: true, enableLiveAutocompletion: true});
+        editor.setOptions({showPrintMargin: false, enableBasicAutocompletion: true, enableLiveAutocompletion: true});
         editor.focus();
 
         var $loader = $('#loader');
