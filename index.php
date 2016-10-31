@@ -9,8 +9,9 @@ if(isset($_POST['code'])) {
 <html>
   <head>
     <title>PHP Eval Sandbox</title>
+    <link rel="icon" type="image/png" href="http://www.favicon.cc/logo3d/243711.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <style type="text/css" media="screen">
         body, pre { font-family: monospace; font-size: 1.2em; color: rgba(51, 51, 51, 0.9);}
         .nopadding {padding: 0;}
