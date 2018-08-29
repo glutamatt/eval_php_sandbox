@@ -1,5 +1,5 @@
 <?php
-in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '172.17.0.1']) || die('Seriously dude ?');
+//in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '172.17.0.1']) || die('Seriously dude ?');
 if(isset($_POST['code'])) {
     $code = $_POST['code'];
 	error_reporting(E_ALL);
